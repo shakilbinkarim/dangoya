@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1918660456362852}
+  m_IsPrefabAsset: 1
+--- !u!1 &1918660456362852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4546016405016716}
+  - component: {fileID: 114218270670251208}
+  m_Layer: 0
+  m_Name: Moving Things Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4546016405016716
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918660456362852}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.5, y: -4.3, z: 5.8828125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114218270670251208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918660456362852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3349d1da38c2f6747936b5969231e91b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movingThings:
+  - {fileID: 1016143919192622, guid: 3dddc98ba9caf904f9f37ab9f9a99611, type: 2}
+  - {fileID: 1016143919192622, guid: 1abc6a8bc7b959149a21ab4c250b73aa, type: 2}
+  - {fileID: 1016143919192622, guid: e78b0074e1cb12f4e851c45daa3407a8, type: 2}
+  - {fileID: 1998994430307448, guid: 1c1f7f8c47b14e64e9951bed4783820e, type: 2}
+  - {fileID: 1870117072792642, guid: b5e61c46f7eafa44c92a6d47f2cba51b, type: 2}
+  - {fileID: 1988309565976158, guid: 4d8fdb37a7be56842820ed1206763ce5, type: 2}
+  - {fileID: 1870117072792642, guid: 35d2c0affe355544593d811572214ce0, type: 2}
+  - {fileID: 1421385789707150, guid: 1818dca94b4e3f14d991742a71c92936, type: 2}
+  - {fileID: 1870117072792642, guid: fcf99cdd823c68248a20a0dc725a71e8, type: 2}
+  spawnInterval: 0.5
+  spawnPosYUpperBound: -0.5
+  spawnPosYLowerBound: -3.5
+  movingObjectLifeTime: 4
