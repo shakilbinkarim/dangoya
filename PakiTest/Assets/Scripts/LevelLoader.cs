@@ -9,18 +9,12 @@ public class LevelLoader : MonoBehaviour
 
 	[SerializeField] private int sceneIndex;
 
-	private void Start()
-	{
-		StartCoroutine(LoadAsyncronously());
-	}
+	private void Start() => StartCoroutine(LoadAsyncronously());
 
-	IEnumerator LoadAsyncronously()
+	private IEnumerator LoadAsyncronously()
 	{
 		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-		while (!operation.isDone)
-		{
-			yield return null;
-		}
+		while (!operation.isDone) yield return null;
 	}
 
 }

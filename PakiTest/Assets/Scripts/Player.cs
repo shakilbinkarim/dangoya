@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
     private bool isShielded;
 
     // Use this for initialization
-    void Start ()
+    private void Start ()
     {
         speed = -1 * Mathf.Sqrt(speed * speed); // using square root incase speed is negative
         audioSource = GetComponent<AudioSource>();
@@ -40,44 +40,37 @@ public class Player : MonoBehaviour {
     private void InitShieldFunc()
     {
         shieldTime = GamerPrefs.GetShieldDuration();
-        MovingTingsFactory.CAN_MAKE_SHIELDS = true;
+        MovingThingsFactory.CanMakeShields = true;
         shieldCover.SetActive(false);
         isShielded = false;
     }
 
     // Update is called once per frame
-    void Update ()
+    private void Update ()
     {
-        if (mobile)
-        {
-            gameObject.transform.Translate(0, speed * Time.deltaTime, 0); 
-        }
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            mobile = true;
-        }	
-	}
+        if (mobile) gameObject.transform.Translate(0, speed * Time.deltaTime, 0);
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) mobile = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == TagsManager.LowerColliderTag)
-        {
-            levelManager.GameOver();
-        }
+        if (collision.gameObject.tag == TagsManager.LowerColliderTag) levelManager.GameOver();
         if (collision.gameObject.tag == TagsManager.UpperColliderTag)
         {
             mobile = false;
             // because speed was doubled when the stick was sent up
             speed = -1 * Mathf.Sqrt(speed / 2 * speed / 2);　
         }
-        if (collision.gameObject.tag == TagsManager.PinkDungoTag ||
-            collision.gameObject.tag == TagsManager.GreenDungoTag ||
-            collision.gameObject.tag == TagsManager.WhiteDungoTag)
+
+        var collidedWithADungo = collision.gameObject.tag == TagsManager.PinkDungoTag ||
+                collision.gameObject.tag == TagsManager.GreenDungoTag ||
+                collision.gameObject.tag == TagsManager.WhiteDungoTag;
+        if (collidedWithADungo)
         {
             PlaySound(dangoClip);
             SendStickUp();
             // Destroying fish and playing particlefx
-            stickDango(collision);
+            StickDango(collision);
         }
         if (collision.gameObject.tag == TagsManager.BombTag)
         {
@@ -127,7 +120,7 @@ public class Player : MonoBehaviour {
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             shieldCover.SetActive(true);
             isShielded = true;
-            MovingTingsFactory.CAN_MAKE_SHIELDS = false;
+            MovingThingsFactory.CanMakeShields = false;
             StartCoroutine(ResetShield(shieldTime));
         }
     }
@@ -137,13 +130,13 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(shieldTime);
         shieldCover.SetActive(false);
         isShielded = false;
-        MovingTingsFactory.CAN_MAKE_SHIELDS = true;
+        MovingThingsFactory.CanMakeShields = true;
     }
 
     private void SendStickUp()
     {
         mobile = true;
-        // doubling spped when sending stick up
+        // doubling speed when sending stick up
         speed = 2 * Mathf.Sqrt(speed * speed);
     }
 
@@ -156,7 +149,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void stickDango(Collider2D collision)
+    private void StickDango(Collider2D collision)
     {
         dangos = dangos + 1;
         collision.gameObject.GetComponent<MovingThings>().Vaporize();
@@ -174,7 +167,6 @@ public class Player : MonoBehaviour {
         {
             EmptyDungoStick();
             levelManager.DeductLife();
-            // TODO: deduct life from player
         }
     }
 
@@ -188,7 +180,7 @@ public class Player : MonoBehaviour {
 
     public void EmptyDungoStick()
     {
-        for (int i = 0; i < dangoPositions.Length; i++)
+        for (var i = 0; i < dangoPositions.Length; i++)
         {
             dangoPositions[i].GetComponent<SpriteRenderer>().sprite = null;
         }

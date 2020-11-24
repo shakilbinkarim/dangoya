@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class MarketController : MonoBehaviour
 {
-    private const float Time_Slow_Cap = 15.0f;
-    private const float Shield_Duration_Cap = 15.0f;
-    private const int Max_Life_Cap = 8;
-
-
-
+    private const float TimeSlowCap = 15.0f;
+    private const float ShieldDurationCap = 15.0f;
+    private const int MaxLifeCap = 8;
+    
     private float timeSlow;
     private int timeSlowUpgrCost;
     [SerializeField] Text timeSlowAmountText;
@@ -36,14 +34,14 @@ public class MarketController : MonoBehaviour
         HandleShield();
         HandleMaxLife();
         HandleOkaneBalance();
-        HandleMarketSceneBGMusic();
+        HandleMarketSceneBgMusic();
     }
 
     private void HandleMaxLife()
     {
         maxLife = GamerPrefs.GetMaxLife();
         maxLifeAmountText.text = "心 : " + maxLife.ToString();
-        if (maxLife < Max_Life_Cap)
+        if (maxLife < MaxLifeCap)
         {
             maxLifeUpgrCost = ((maxLife * 2) * (maxLife * 2)) / 2;
             maxLifeCostText.text = "Upgrade Cost 金: " + maxLifeUpgrCost.ToString();
@@ -60,7 +58,7 @@ public class MarketController : MonoBehaviour
     {
         shieldDuration = GamerPrefs.GetShieldDuration();
         shieldDurationAmountText.text = "強 : " + shieldDuration.ToString();
-        if (shieldDuration < Shield_Duration_Cap)
+        if (shieldDuration < ShieldDurationCap)
         {
             shildDurationUpgrCost = (int)((shieldDuration * shieldDuration) / 2);
             shieldDurationCostText.text = "Upgrade Cost 金: " + shildDurationUpgrCost.ToString();
@@ -77,7 +75,7 @@ public class MarketController : MonoBehaviour
     {
         timeSlow = GamerPrefs.GetSlowTimeDuration();
         timeSlowAmountText.text = "時 : " + timeSlow.ToString();
-        if (timeSlow < Time_Slow_Cap)
+        if (timeSlow < TimeSlowCap)
         {
             timeSlowUpgrCost = (int)((timeSlow * timeSlow) / 2);
             timeSlowCostText.text = "Upgrade Cost 金: " + timeSlowUpgrCost.ToString();
@@ -99,84 +97,60 @@ public class MarketController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            QuitGame();
-        }
+        if (Input.GetKey(KeyCode.Escape)) QuitGame();
     }
 
-    public void QuitGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main_Menu");
-    }
+    public void QuitGame() => UnityEngine.SceneManagement.SceneManager.LoadScene("Main_Menu");
 
-    public void HandleMarketSceneBGMusic()
+    public void HandleMarketSceneBgMusic()
     {
-        int music = GamerPrefs.GetMusicOn(); // 悪い
+        var music = GamerPrefs.GetMusicOn(); // 悪い
         willPlay = (music == 1) ? true : false;
-        AudioSource audioSource = GetComponent<AudioSource>();
+        var audioSource = GetComponent<AudioSource>();
         if (willPlay)
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            if (!audioSource.isPlaying) audioSource.Play();
         }
         else
         {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
+            if (audioSource.isPlaying) audioSource.Stop();
         }
     }
 
     public void UpgradeTimeSlow()
     {
-        if (!(timeSlow >= Time_Slow_Cap))
-        {
-            if (balance >= timeSlowUpgrCost)
-            {
-                balance -= timeSlowUpgrCost;
-                timeSlow += 2;
-                GamerPrefs.SetSlowTimeDuration(timeSlow);
-                GamerPrefs.SetOkane(balance);
-                HandleOkaneBalance();
-                HandleTimeSlow();
-            }
-        }
+        var canUpgradeSlowTime = timeSlow >= TimeSlowCap || balance < timeSlowUpgrCost;
+        if (canUpgradeSlowTime) return;
+        balance -= timeSlowUpgrCost;
+        timeSlow += 2;
+        GamerPrefs.SetSlowTimeDuration(timeSlow);
+        GamerPrefs.SetOkane(balance);
+        HandleOkaneBalance();
+        HandleTimeSlow();
     }
 
     public void UpgradeMaxLife()
     {
-        if (!(maxLife >= Max_Life_Cap))
-        {
-            if (balance >= maxLifeUpgrCost)
-            {
-                balance -= maxLifeUpgrCost;
-                maxLife += 1;
-                GamerPrefs.SetMaxLife(maxLife);
-                GamerPrefs.SetOkane(balance);
-                HandleOkaneBalance();
-                HandleMaxLife();
-            }
-        }
+        var canUpgradeLife = maxLife >= MaxLifeCap || balance < maxLifeUpgrCost;
+        if (canUpgradeLife) return;
+        balance -= maxLifeUpgrCost;
+        maxLife += 1;
+        GamerPrefs.SetMaxLife(maxLife);
+        GamerPrefs.SetOkane(balance);
+        HandleOkaneBalance();
+        HandleMaxLife();
     }
 
     public void UpgradeShield()
     {
-        if (!(shieldDuration >= Shield_Duration_Cap))
-        {
-            if (balance >= shildDurationUpgrCost)
-            {
-                balance -= shildDurationUpgrCost;
-                shieldDuration += 2;
-                GamerPrefs.SetShieldDuration(shieldDuration);
-                GamerPrefs.SetOkane(balance);
-                HandleOkaneBalance();
-                HandleShield();
-            }
-        }
+        var canUpgradeShield = shieldDuration >= ShieldDurationCap || balance < shildDurationUpgrCost;
+        if (canUpgradeShield) return;
+        balance -= shildDurationUpgrCost;
+        shieldDuration += 2;
+        GamerPrefs.SetShieldDuration(shieldDuration);
+        GamerPrefs.SetOkane(balance);
+        HandleOkaneBalance();
+        HandleShield();
     }
 
 }

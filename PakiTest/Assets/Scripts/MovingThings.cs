@@ -8,10 +8,7 @@ public class MovingThings : MonoBehaviour {
     [SerializeField] private ParticleSystem particleSystem;
     
     // Update is called once per frame
-    void Update ()
-    {
-        gameObject.transform.Translate(speed * Time.deltaTime, 0.0f, 0.0f);	
-	}
+    private void Update () => gameObject.transform.Translate(speed * Time.deltaTime, 0.0f, 0.0f);
 
     public void Vaporize()
     {
@@ -21,12 +18,8 @@ public class MovingThings : MonoBehaviour {
 
     private void ShowParticles(Vector3 position, ParticleSystem particle)
     {
-
-        if (!particle)
-        {
-            return;
-        }
-        ParticleSystem ps = (ParticleSystem)Instantiate(particle);
+        if (!particle) return;
+        var ps = (ParticleSystem)Instantiate(particle);
         ps.transform.position = position;
         ps.Play();
         Destroy(ps.gameObject, ps.startLifetime);

@@ -5,27 +5,21 @@ using UnityEngine;
 public class BGMusicPlayer : MonoBehaviour {
 
     private bool willPlay = false;
-    
-    // Use this for initialization
-    void Start ()
+
+    private void Start ()
     {
-        // 音楽
-        int music = GamerPrefs.GetMusicOn(); // 悪い
+        var music = GamerPrefs.GetMusicOn(); 
         willPlay = (music == 1) ? true : false;
-        AudioSource audioSource = GetComponent<AudioSource>();
+        var audioSource = GetComponent<AudioSource>();
         if (willPlay)
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            if (audioSource.isPlaying) return;
+            audioSource.Play();
         }
         else
         {
-            if (audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
+            if (!audioSource.isPlaying) return;
+            audioSource.Stop();
         }
     }
 	

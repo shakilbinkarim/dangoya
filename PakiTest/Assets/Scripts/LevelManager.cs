@@ -56,9 +56,9 @@ public class LevelManager : MonoBehaviour {
         InitLife();
         InitMusic();
         timeSlow = GamerPrefs.GetSlowTimeDuration();
-        MovingTingsFactory.DUNGO_FACTORY_WORKING = true;
-        MovingTingsFactory.CAN_JUMP_WAVES = false;
-        MovingTingsFactory.CAN_SLOW_HUNGER = false;
+        MovingThingsFactory.DungoFactoryWorking = true;
+        MovingThingsFactory.CanJumpWaves = false;
+        MovingThingsFactory.CanSlowHunger = false;
         isTimeSlowed = false;
         ShowCurrentWaveToPlayer();
         ResetIndicators();
@@ -148,7 +148,7 @@ public class LevelManager : MonoBehaviour {
         gameOn = false;
         currentHP = maxHP;
         hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
-        MovingTingsFactory.DUNGO_FACTORY_WORKING = false;
+        MovingThingsFactory.DungoFactoryWorking = false;
         for (int i = 0; i < 3; i++)
         {
             currentWave++;
@@ -178,8 +178,8 @@ public class LevelManager : MonoBehaviour {
             isTimeSlowed = true;
             previousHungerRate = hungerRate;
             hungerRate = 0.3f;
-            MovingTingsFactory.CAN_JUMP_WAVES = false;
-            MovingTingsFactory.CAN_SLOW_HUNGER = false;
+            MovingThingsFactory.CanJumpWaves = false;
+            MovingThingsFactory.CanSlowHunger = false;
             ShowMessage("Slow Timer!");
             StartCoroutine(ReturnHugerRateToNormal(timeSlow)); 
         }
@@ -193,9 +193,9 @@ public class LevelManager : MonoBehaviour {
         isTimeSlowed = false;
         if (currentWave >= advanceSanWave) 
         {
-            MovingTingsFactory.CAN_JUMP_WAVES = true; 
+            MovingThingsFactory.CanJumpWaves = true; 
         }
-        MovingTingsFactory.CAN_SLOW_HUNGER = true;
+        MovingThingsFactory.CanSlowHunger = true;
     }
 
     internal bool DungoMatch(string tag, int dangos)
@@ -213,7 +213,7 @@ public class LevelManager : MonoBehaviour {
         gameOn = false;
         currentHP = maxHP;
         hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
-        MovingTingsFactory.DUNGO_FACTORY_WORKING = false;
+        MovingThingsFactory.DungoFactoryWorking = false;
         currentWave++;
         CheckIfFactoryCanProduceClocksAndArrows();
         numberOfOrders = numberOfOrders + ((currentWave - 1) * numberOfOrders);
@@ -242,11 +242,11 @@ public class LevelManager : MonoBehaviour {
         }
         else if (currentWave >= advanceSanWave)
         {
-            MovingTingsFactory.CAN_JUMP_WAVES = true;
+            MovingThingsFactory.CanJumpWaves = true;
         }
         else if (currentWave >= timeSlowWave)
         {
-            MovingTingsFactory.CAN_SLOW_HUNGER = true;
+            MovingThingsFactory.CanSlowHunger = true;
         }
     }
 
@@ -255,7 +255,7 @@ public class LevelManager : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
         //ResetIndicators();
         gameOn = true;
-        MovingTingsFactory.DUNGO_FACTORY_WORKING = true;
+        MovingThingsFactory.DungoFactoryWorking = true;
     }
 
     // このコードは悪いですが便利です。今度時間があったらchangeしてください。
@@ -309,7 +309,7 @@ public class LevelManager : MonoBehaviour {
             audioSource.Play();
         }
         gameOn = false;
-        MovingTingsFactory.DUNGO_FACTORY_WORKING = false;
+        MovingThingsFactory.DungoFactoryWorking = false;
         GameObject bgMusicPlayer = GameObject.Find("BG Music Player");
         bgMusicPlayer.GetComponent<AudioSource>().Stop();
         StartCoroutine(WaitAndEndGame());

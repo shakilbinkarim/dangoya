@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Project\dangoya\PakiTest" t="IncludeRecursive">
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Plugins" t="Include">
+          <e p="AdmobAPI" t="Include">
+            <e p="Admob.cs" t="Include" />
+            <e p="AdmobEvent.cs" t="Include" />
+            <e p="AdmobGender.cs" t="Include" />
+            <e p="AdmobListenerProxy.cs" t="Include" />
+            <e p="AdPosition.cs" t="Include" />
+            <e p="AdSize.cs" t="Include" />
+            <e p="IAdmobListener.cs" t="Include" />
+            <e p="MonoPInvokeCallbackAttribute.cs" t="Include" />
+          </e>
+          <e p="Android" t="Include">
+            <e p="AndroidManifest.xml" t="Include" />
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="AdManager.cs" t="Include" />
+          <e p="BGMusicPlayer.cs" t="Include" />
+          <e p="GamerPrefs.cs" t="Include" />
+          <e p="HighScoreSceneController.cs" t="Include" />
+          <e p="LevelLoader.cs" t="Include" />
+          <e p="LevelManager.cs" t="Include" />
+          <e p="MainMenuController.cs" t="Include" />
+          <e p="MarketController.cs" t="Include" />
+          <e p="MovingThings.cs" t="Include" />
+          <e p="MovingThingsFactory.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="TagsManager.cs" t="Include" />
+          <e p="Test.cs" t="Include" />
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="PakiTest.sln" t="IncludeFlat" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+    <e p="C:\Users\harukaze-9\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\harukaze-9\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_PakiTest.-632771373.00" t="ExcludeRecursive" />
+  </component>
+</project>
