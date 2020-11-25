@@ -20,20 +20,18 @@ public class MainMenuController : MonoBehaviour
         optionsPanel.SetActive(false);
 		HandleHighScoreText();
 		HandleMusicButtonText();
-#if UNITY_EDITOR
-#elif UNITY_ANDROID
+#if UNITY_ANDROID
         AdManager.Instance.ShowBannerAd(); 
 #endif
     }
 
     private void HandleMusicButtonText()
 	{
-		// 音楽
-		int music = GamerPrefs.GetMusicOn(); // 悪い
+		var music = GamerPrefs.GetMusicOn();
 		soundText = soundButton.GetComponent<Text>();
 		soundText.text = (music == 1) ? "Sound On" : "Sound Off";
 		willPlay = (music == 1) ? true : false;
-        HandleMainMenuBGMusic();
+        HandleMainMenuBgMusic();
     }
 
 	private void HandleHighScoreText()
@@ -97,10 +95,10 @@ public class MainMenuController : MonoBehaviour
 		Text soundText = soundButton.GetComponent<Text>();
 		soundText.text = (music == 1) ? "Sound On" : "Sound Off";
 		willPlay = (music == 1) ? true : false;
-        HandleMainMenuBGMusic();
+        HandleMainMenuBgMusic();
     }
 
-	public void HandleMainMenuBGMusic()
+	public void HandleMainMenuBgMusic()
 	{
 		AudioSource audioSource = GetComponent<AudioSource>();
 		if (willPlay)

@@ -15,7 +15,7 @@ public static class PlayerPrefKeys
 public static class GamerPrefs
 {
     #region SettingPrefs
-
+    
     public static void SetHighScore(int score) => PlayerPrefs.SetInt(PlayerPrefKeys.HighScore, score);
 
     public static void SetMusicOn(int truthValue) => PlayerPrefs.SetInt(PlayerPrefKeys.MusicOn, truthValue);
@@ -29,7 +29,6 @@ public static class GamerPrefs
     public static void SetShieldDuration(float shieldTime) => PlayerPrefs.SetFloat(PlayerPrefKeys.ShieldTime, shieldTime);
 
     #endregion
-
 
     #region GettingPrefs
 

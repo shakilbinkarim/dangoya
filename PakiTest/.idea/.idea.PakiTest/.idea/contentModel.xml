@@ -22,7 +22,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AdManager.cs" t="Include" />
-          <e p="BGMusicPlayer.cs" t="Include" />
+          <e p="AudioPlayer.cs" t="Include" />
           <e p="GamerPrefs.cs" t="Include" />
           <e p="HighScoreSceneController.cs" t="Include" />
           <e p="LevelLoader.cs" t="Include" />
