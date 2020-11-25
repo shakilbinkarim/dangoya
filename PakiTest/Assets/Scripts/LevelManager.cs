@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour {
     private int okane;
 
     // Use this for initialization
-    void Start ()
+    private void Start ()
     {
         gameOn = true;
         score = 0;
@@ -74,14 +74,14 @@ public class LevelManager : MonoBehaviour {
     private void InitMusic()
     {
         audioSource = GetComponent<AudioSource>();
-        int music = GamerPrefs.GetMusicOn(); // 悪い
+        var music = GamerPrefs.GetMusicOn(); // 悪い
         willPlay = (music == 1) ? true : false;
     }
 
     public void ResetIndicators()
     {
-        int randomIndicatorIndex = UnityEngine.Random.Range(0, indicatorSprites.Length);
-        for (int i = 0; i < indicators.Length; i++)
+        var randomIndicatorIndex = UnityEngine.Random.Range(0, indicatorSprites.Length);
+        for (var i = 0; i < indicators.Length; i++)
         {
             indicators[i].GetComponent<SpriteRenderer>().sprite = indicatorSprites[randomIndicatorIndex];
             indicators[i].tag = indicatorTags[randomIndicatorIndex];
@@ -97,50 +97,29 @@ public class LevelManager : MonoBehaviour {
 
     internal void IncreaseLife()
     {
-        if (life < maxLife)
-        {
-            life++;
-            lifeText.text = "心　：　" + life.ToString();
-        }
+        if (life >= maxLife) return;
+        life++;
+        lifeText.text = "心　：　" + life.ToString();
     }
 
     internal void DeductLife()
     {
         life--;
         lifeText.text = "心　：　" + life.ToString();
-        if (life < 1)
-        {
-            GameOver();
-        }
+        if (life >= 1) return;
+        GameOver();
     }
 
     private void Update()
     {
-        if (gameOn)
-        {
-            currentHP = currentHP - (hungerRate * Time.deltaTime);
-            hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
-            if (score >= numberOfOrders)
-            {
-                InitiateNextWave();
-            }
-            if (currentHP >= 6)
-            {
-                hungerBar.color = Color.green;
-            }
-            if (currentHP < 6)
-            {
-                hungerBar.color = Color.yellow;
-            }
-            if (currentHP < 3)
-            {
-                hungerBar.color = Color.red;
-            }
-            if (currentHP < 0)
-            {
-                GameOver();
-            } 
-        }
+        if (!gameOn) return;
+        currentHP = currentHP - (hungerRate * Time.deltaTime);
+        hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
+        if (score >= numberOfOrders) InitiateNextWave();
+        if (currentHP >= 6) hungerBar.color = Color.green;
+        if (currentHP < 6) hungerBar.color = Color.yellow;
+        if (currentHP < 3) hungerBar.color = Color.red;
+        if (currentHP < 0) GameOver();
     }
 
     internal void AdvanceSanLevel()
@@ -149,23 +128,14 @@ public class LevelManager : MonoBehaviour {
         currentHP = maxHP;
         hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
         MovingThingsFactory.DungoFactoryWorking = false;
-        for (int i = 0; i < 3; i++)
+        for (var i = 0; i < 3; i++)
         {
             currentWave++;
             numberOfOrders = numberOfOrders + ((currentWave - 1) * numberOfOrders);
-            if (!isTimeSlowed)
-            {
-                hungerRate += (hungerRate * ((currentWave - 1) / 4));
-            }
-            else
-            {
-                previousHungerRate += (previousHungerRate * ((currentWave - 1) / 4));
-            }
+            if (!isTimeSlowed) hungerRate += (hungerRate * ((currentWave - 1) / 4));
+            else previousHungerRate += (previousHungerRate * ((currentWave - 1) / 4));
         }
-        if (hungerRate > 3.0f)
-        {
-            hungerRate = 3.0f;
-        }
+        if (hungerRate > 3.0f) hungerRate = 3.0f;
         player.EmptyDungoStick();
         ShowCurrentWaveToPlayer();
         StartCoroutine(AtarashiWaveGaHajimarimasu());
@@ -173,16 +143,14 @@ public class LevelManager : MonoBehaviour {
 
     internal void SlowTime()
     {
-        if (!isTimeSlowed)
-        {
-            isTimeSlowed = true;
-            previousHungerRate = hungerRate;
-            hungerRate = 0.3f;
-            MovingThingsFactory.CanJumpWaves = false;
-            MovingThingsFactory.CanSlowHunger = false;
-            ShowMessage("Slow Timer!");
-            StartCoroutine(ReturnHugerRateToNormal(timeSlow)); 
-        }
+        if (isTimeSlowed) return;
+        isTimeSlowed = true;
+        previousHungerRate = hungerRate;
+        hungerRate = 0.3f;
+        MovingThingsFactory.CanJumpWaves = false;
+        MovingThingsFactory.CanSlowHunger = false;
+        ShowMessage("Slow Timer!");
+        StartCoroutine(ReturnHugerRateToNormal(timeSlow));
     }
 
     private IEnumerator ReturnHugerRateToNormal(float timeSlow)
@@ -191,19 +159,13 @@ public class LevelManager : MonoBehaviour {
         ShowMessage("No More Slow Timer!");
         hungerRate = previousHungerRate;
         isTimeSlowed = false;
-        if (currentWave >= advanceSanWave) 
-        {
-            MovingThingsFactory.CanJumpWaves = true; 
-        }
+        if (currentWave >= advanceSanWave) MovingThingsFactory.CanJumpWaves = true;
         MovingThingsFactory.CanSlowHunger = true;
     }
 
     internal bool DungoMatch(string tag, int dangos)
     {
-        if (tag == indicators[dangos].tag)
-        {
-            return true;
-        }
+        if (tag == indicators[dangos].tag) return true;
         return false;
     }
 
@@ -217,18 +179,9 @@ public class LevelManager : MonoBehaviour {
         currentWave++;
         CheckIfFactoryCanProduceClocksAndArrows();
         numberOfOrders = numberOfOrders + ((currentWave - 1) * numberOfOrders);
-        if (!isTimeSlowed)
-        {
-            hungerRate += (hungerRate * ((currentWave - 1) / 4)); 
-        }
-        else
-        {
-            previousHungerRate += (previousHungerRate * ((currentWave - 1) / 4));
-        }
-        if (hungerRate > 3.0f)
-        {
-            hungerRate = 3.0f;
-        }
+        if (!isTimeSlowed) hungerRate += (hungerRate * ((currentWave - 1) / 4));
+        else previousHungerRate += (previousHungerRate * ((currentWave - 1) / 4));
+        if (hungerRate > 3.0f) hungerRate = 3.0f;
         player.EmptyDungoStick();
         ShowCurrentWaveToPlayer();
         StartCoroutine(AtarashiWaveGaHajimarimasu());
@@ -240,14 +193,8 @@ public class LevelManager : MonoBehaviour {
         {
             // To avoid changing static values all the time
         }
-        else if (currentWave >= advanceSanWave)
-        {
-            MovingThingsFactory.CanJumpWaves = true;
-        }
-        else if (currentWave >= timeSlowWave)
-        {
-            MovingThingsFactory.CanSlowHunger = true;
-        }
+        else if (currentWave >= advanceSanWave) MovingThingsFactory.CanJumpWaves = true;
+        else if (currentWave >= timeSlowWave) MovingThingsFactory.CanSlowHunger = true;
     }
 
     private IEnumerator AtarashiWaveGaHajimarimasu()
@@ -280,10 +227,7 @@ public class LevelManager : MonoBehaviour {
     public void AddHP(float hp)
     {
         currentHP += hp;
-        if (currentHP > maxHP)
-        {
-            currentHP = maxHP;
-        }
+        if (currentHP > maxHP) currentHP = maxHP;
     }
 
     /// <summary>
@@ -321,20 +265,14 @@ public class LevelManager : MonoBehaviour {
         SetFinalScore(this.score);
     }
 
-    public void QuitGame()
-    {
-        SceneManager.LoadScene("Main_Menu");
-    }
+    public void QuitGame() => SceneManager.LoadScene("Main_Menu");
 
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     public void SetFinalScore(int score)
     {
-        int waveScore = currentWave * 2;
-        int servings = score;
+        var waveScore = currentWave * 2;
+        var servings = score;
         this.score = servings + waveScore;
         UpdateBankBalance();
         if (this.score < GamerPrefs.GetHighScore())
@@ -353,7 +291,7 @@ public class LevelManager : MonoBehaviour {
 
     private void UpdateBankBalance()
     {
-        int bankBalance = GamerPrefs.GetMoney();
+        var bankBalance = GamerPrefs.GetMoney();
         bankBalance += okane;
         GamerPrefs.SetMoney(bankBalance);
     }

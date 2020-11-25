@@ -19,15 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cac273cf-5be1-4b91-b2bf-192f0c711a03" name="Default Changelist" comment="PlayerPrefKeys">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BG Music Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BG Music Player.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main_Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main_Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BGMusicPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BGMusicPlayer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AudioPlayer.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamerPrefs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamerPrefs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenuController.cs" afterDir="false" />
+    <list default="true" id="cac273cf-5be1-4b91-b2bf-192f0c711a03" name="Default Changelist" comment="before removing sfx from player">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/AdvanceSanWave.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/AdvanceSanWave.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Bomb.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Bomb.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Clock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Clock.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Coin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Coin.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Green Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Green Dango.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Heart.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Heart.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Pink Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Pink Dango.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Shield.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Shield.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/White Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/White Dango.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,16 +45,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingThingsFactory.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MovingThings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TagsManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MarketController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GamerPrefs.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BGMusicPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenuController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AudioPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MovingThings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
       </list>
     </option>
   </component>
@@ -95,7 +100,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606210722853</updated>
-      <workItem from="1606210734014" duration="12380000" />
+      <workItem from="1606210734014" duration="14360000" />
     </task>
     <task id="LOCAL-00001" summary="small changes">
       <created>1606224047462</created>
@@ -111,7 +116,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606297066220</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="before removing sfx from player">
+      <created>1606306573105</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606306573105</updated>
+    </task>
+    <task id="LOCAL-00004" summary="before removing sfx from player">
+      <created>1606306584332</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606306584332</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,12 +153,17 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="small changes" />
     <MESSAGE value="PlayerPrefKeys" />
-    <option name="LAST_COMMIT_MESSAGE" value="PlayerPrefKeys" />
+    <MESSAGE value="before removing sfx from player" />
+    <option name="LAST_COMMIT_MESSAGE" value="before removing sfx from player" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1572" y="588" key="SettingsEditor" timestamp="1606295348235">
       <screen x="-1920" y="407" width="1920" height="1040" />
     </state>
     <state x="-1572" y="588" key="SettingsEditor/0.0.1920.1040/-1920.407.1920.1040@-1920.407.1920.1040" timestamp="1606295348235" />
+    <state x="-1297" y="632" width="672" height="678" key="search.everywhere.popup" timestamp="1606308033231">
+      <screen x="-1920" y="407" width="1920" height="1040" />
+    </state>
+    <state x="-1297" y="632" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/-1920.407.1920.1040@-1920.407.1920.1040" timestamp="1606308033231" />
   </component>
 </project>

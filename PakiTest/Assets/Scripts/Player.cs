@@ -7,32 +7,27 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     [SerializeField] private float speed = 500.0f; // Speed at which the player moves
-    
-    [SerializeField] private AudioClip dangoClip; // Sound made when player collides with Dango
-    [SerializeField] private AudioClip bombClip; // Sound made when player collides with Bomb
-    [SerializeField] private AudioClip tokeiClip; // Sound made when player collides with Clock
-    [SerializeField] private AudioClip advance3Clip; // Sound made when player collides with Arrow
-    [SerializeField] private AudioClip shieldClip; // Sound made when player collides with Shield
-    [SerializeField] private AudioClip lifeClip; // Sound made when player collides with Life
-   
+
     [SerializeField] private LevelManager levelManager; // Reference to Level Manager
     [SerializeField] private GameObject[] dangoPositions;// Gameobjects parented to the player for showng players Dangos that they got
     [SerializeField] private GameObject shieldCover; // contains the translucent shield cover ti indicate player currently has shield
 
-    private bool mobile = false; // Flag to see if player can move now
-    private AudioSource audioSource; // The audio source the player has
-    private bool willPlay; // Flag to see if sound can be played
+    private bool inMotion = false; // Flag to see if player can move now
     private int dangos; // To keep track of dangos the player has collected
     private float shieldTime;
     private bool isShielded;
 
-    // Use this for initialization
+    public void EmptyDungoStick()
+    {
+        for (var i = 0; i < dangoPositions.Length; i++) 
+            dangoPositions[i].GetComponent<SpriteRenderer>().sprite = null;
+        dangos = -1;
+        levelManager.ResetIndicators();
+    }
+    
     private void Start ()
     {
         speed = -1 * Mathf.Sqrt(speed * speed); // using square root incase speed is negative
-        audioSource = GetComponent<AudioSource>();
-        int music = GamerPrefs.GetMusicOn(); // 悪い
-        willPlay = (music == 1) ? true : false;
         dangos = -1;
         InitShieldFunc();
     }
@@ -45,11 +40,10 @@ public class Player : MonoBehaviour {
         isShielded = false;
     }
 
-    // Update is called once per frame
     private void Update ()
     {
-        if (mobile) gameObject.transform.Translate(0, speed * Time.deltaTime, 0);
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) mobile = true;
+        if (inMotion) gameObject.transform.Translate(0, speed * Time.deltaTime, 0);
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) inMotion = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,7 +51,7 @@ public class Player : MonoBehaviour {
         if (collision.gameObject.tag == TagsManager.LowerColliderTag) levelManager.GameOver();
         if (collision.gameObject.tag == TagsManager.UpperColliderTag)
         {
-            mobile = false;
+            inMotion = false;
             // because speed was doubled when the stick was sent up
             speed = -1 * Mathf.Sqrt(speed / 2 * speed / 2);　
         }
@@ -67,14 +61,12 @@ public class Player : MonoBehaviour {
                 collision.gameObject.tag == TagsManager.WhiteDungoTag;
         if (collidedWithADungo)
         {
-            PlaySound(dangoClip);
             SendStickUp();
             // Destroying fish and playing particlefx
             StickDango(collision);
         }
         if (collision.gameObject.tag == TagsManager.BombTag)
         {
-            PlaySound(bombClip);
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             SendStickUp();
             if (!isShielded)
@@ -85,14 +77,12 @@ public class Player : MonoBehaviour {
         }
         if (collision.gameObject.tag == TagsManager.ClockTag)
         {
-            PlaySound(tokeiClip);
             SendStickUp();
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             levelManager.SlowTime();
         }
         if (collision.gameObject.tag == TagsManager.ArrowTag)
         {
-            PlaySound(advance3Clip);
             SendStickUp();
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             EmptyDungoStick();
@@ -101,20 +91,17 @@ public class Player : MonoBehaviour {
         if (collision.gameObject.tag == TagsManager.LifeTag)
         {
             SendStickUp();
-            PlaySound(lifeClip);
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             levelManager.IncreaseLife();
         }
         if (collision.gameObject.tag == TagsManager.OkaneTag)
         {
-            PlaySound(tokeiClip); // TODO: Replace with Coin Clip
             SendStickUp();
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
             levelManager.AddOkane();
         }
         if (collision.gameObject.tag == TagsManager.ShieldTag)
         {
-            PlaySound(shieldClip);
             Debug.Log("Shield Triggered");
             SendStickUp();
             collision.gameObject.GetComponent<MovingThings>().Vaporize();
@@ -135,18 +122,9 @@ public class Player : MonoBehaviour {
 
     private void SendStickUp()
     {
-        mobile = true;
+        inMotion = true;
         // doubling speed when sending stick up
         speed = 2 * Mathf.Sqrt(speed * speed);
-    }
-
-    private void PlaySound(AudioClip clip)
-    {
-        if (willPlay)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-        }
     }
 
     private void StickDango(Collider2D collision)
@@ -178,13 +156,5 @@ public class Player : MonoBehaviour {
         levelManager.ResetIndicators(); /// TODO: check if redundant
     }
 
-    public void EmptyDungoStick()
-    {
-        for (var i = 0; i < dangoPositions.Length; i++)
-        {
-            dangoPositions[i].GetComponent<SpriteRenderer>().sprite = null;
-        }
-        dangos = -1;
-        levelManager.ResetIndicators();
-    }
+    
 }
