@@ -90,7 +90,7 @@ public class MarketController : MonoBehaviour
 
     private void HandleOkaneBalance()
     {
-        balance = GamerPrefs.GetOkane(); // 悪い
+        balance = GamerPrefs.GetMoney(); // 悪い
         okaneBalance = GameObject.Find("Balance").GetComponent<Text>();
         okaneBalance.text = "Coin 金 :  " + balance;
     }
@@ -124,7 +124,7 @@ public class MarketController : MonoBehaviour
         balance -= timeSlowUpgrCost;
         timeSlow += 2;
         GamerPrefs.SetSlowTimeDuration(timeSlow);
-        GamerPrefs.SetOkane(balance);
+        GamerPrefs.SetMoney(balance);
         HandleOkaneBalance();
         HandleTimeSlow();
     }
@@ -136,7 +136,7 @@ public class MarketController : MonoBehaviour
         balance -= maxLifeUpgrCost;
         maxLife += 1;
         GamerPrefs.SetMaxLife(maxLife);
-        GamerPrefs.SetOkane(balance);
+        GamerPrefs.SetMoney(balance);
         HandleOkaneBalance();
         HandleMaxLife();
     }
@@ -148,7 +148,7 @@ public class MarketController : MonoBehaviour
         balance -= shildDurationUpgrCost;
         shieldDuration += 2;
         GamerPrefs.SetShieldDuration(shieldDuration);
-        GamerPrefs.SetOkane(balance);
+        GamerPrefs.SetMoney(balance);
         HandleOkaneBalance();
         HandleShield();
     }

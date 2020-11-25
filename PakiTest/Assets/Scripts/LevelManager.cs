@@ -353,8 +353,8 @@ public class LevelManager : MonoBehaviour {
 
     private void UpdateBankBalance()
     {
-        int bankBalance = GamerPrefs.GetOkane();
+        int bankBalance = GamerPrefs.GetMoney();
         bankBalance += okane;
-        GamerPrefs.SetOkane(bankBalance);
+        GamerPrefs.SetMoney(bankBalance);
     }
 }

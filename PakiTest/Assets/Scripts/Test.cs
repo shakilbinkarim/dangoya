@@ -10,15 +10,15 @@ public class Test : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        money.text = GamerPrefs.GetOkane().ToString();
+        money.text = GamerPrefs.GetMoney().ToString();
     }
 
     public void AddMoney()
     {
-        int money = GamerPrefs.GetOkane();
+        int money = GamerPrefs.GetMoney();
         money += 1;
-        GamerPrefs.SetOkane(money);
-        this.money.text = GamerPrefs.GetOkane().ToString();
+        GamerPrefs.SetMoney(money);
+        this.money.text = GamerPrefs.GetMoney().ToString();
     }
 
 }

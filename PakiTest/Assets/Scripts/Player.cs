@@ -7,17 +7,17 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     [SerializeField] private float speed = 500.0f; // Speed at which the player moves
+    
     [SerializeField] private AudioClip dangoClip; // Sound made when player collides with Dango
     [SerializeField] private AudioClip bombClip; // Sound made when player collides with Bomb
     [SerializeField] private AudioClip tokeiClip; // Sound made when player collides with Clock
     [SerializeField] private AudioClip advance3Clip; // Sound made when player collides with Arrow
     [SerializeField] private AudioClip shieldClip; // Sound made when player collides with Shield
     [SerializeField] private AudioClip lifeClip; // Sound made when player collides with Life
+   
     [SerializeField] private LevelManager levelManager; // Reference to Level Manager
-    // Gameobjects parented to the player for showng players Dangos that they got
-    [SerializeField] private GameObject[] dangoPositions;
-    // contains the translucent shield cover ti indicate player currently has shield
-    [SerializeField] private GameObject shieldCover; 
+    [SerializeField] private GameObject[] dangoPositions;// Gameobjects parented to the player for showng players Dangos that they got
+    [SerializeField] private GameObject shieldCover; // contains the translucent shield cover ti indicate player currently has shield
 
     private bool mobile = false; // Flag to see if player can move now
     private AudioSource audioSource; // The audio source the player has
