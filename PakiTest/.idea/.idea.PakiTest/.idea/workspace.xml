@@ -19,19 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cac273cf-5be1-4b91-b2bf-192f0c711a03" name="Default Changelist" comment="before removing sfx from player">
+    <list default="true" id="cac273cf-5be1-4b91-b2bf-192f0c711a03" name="Default Changelist" comment="Cleaned Up Level Manager a bit">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PakiTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/AdvanceSanWave.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/AdvanceSanWave.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Bomb.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Bomb.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Clock.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Clock.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Coin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Coin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Green Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Green Dango.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Heart.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Heart.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Pink Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Pink Dango.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Shield.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/Shield.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/White Dango.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Moving Things/White Dango.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HighScoreSceneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreSceneController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +47,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MovingThings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HighScoreSceneController.cs" />
       </list>
     </option>
   </component>
@@ -100,7 +92,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606210722853</updated>
-      <workItem from="1606210734014" duration="14360000" />
+      <workItem from="1606210734014" duration="16161000" />
     </task>
     <task id="LOCAL-00001" summary="small changes">
       <created>1606224047462</created>
@@ -130,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606306584332</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Cleaned Up Level Manager a bit">
+      <created>1606308294770</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1606308294770</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,7 +153,8 @@
     <MESSAGE value="small changes" />
     <MESSAGE value="PlayerPrefKeys" />
     <MESSAGE value="before removing sfx from player" />
-    <option name="LAST_COMMIT_MESSAGE" value="before removing sfx from player" />
+    <MESSAGE value="Cleaned Up Level Manager a bit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned Up Level Manager a bit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1572" y="588" key="SettingsEditor" timestamp="1606295348235">

@@ -31,7 +31,7 @@ public class LevelManager : MonoBehaviour {
     
     private int score; // To keep track of players current score
     private float maxHP = 10; // Maximum time the player can have
-    private float currentHP; // To keep track of current time left to the player
+    private float currentHp; // To keep track of current time left to the player
     private bool gameOn; // Flag to see if the game is live
     private AudioSource audioSource; // Audiosource of background music
     private bool willPlay; // Flag to see if music shall be played or not
@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour {
         scoreText.text = "点　: " + score.ToString();
         okane = 0;
         okaneText.text = "金　：　" + okane.ToString();
-        currentHP = maxHP;
+        currentHp = maxHP;
         currentWave = 1;
         InitLife();
         InitMusic();
@@ -113,20 +113,20 @@ public class LevelManager : MonoBehaviour {
     private void Update()
     {
         if (!gameOn) return;
-        currentHP = currentHP - (hungerRate * Time.deltaTime);
-        hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
+        currentHp = currentHp - (hungerRate * Time.deltaTime);
+        hungerBar.transform.localScale = new Vector3(1.0f, currentHp / maxHP, 1.0f);
         if (score >= numberOfOrders) InitiateNextWave();
-        if (currentHP >= 6) hungerBar.color = Color.green;
-        if (currentHP < 6) hungerBar.color = Color.yellow;
-        if (currentHP < 3) hungerBar.color = Color.red;
-        if (currentHP < 0) GameOver();
+        if (currentHp >= 6) hungerBar.color = Color.green;
+        if (currentHp < 6) hungerBar.color = Color.yellow;
+        if (currentHp < 3) hungerBar.color = Color.red;
+        if (currentHp < 0) GameOver();
     }
 
     internal void AdvanceSanLevel()
     {
         gameOn = false;
-        currentHP = maxHP;
-        hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
+        currentHp = maxHP;
+        hungerBar.transform.localScale = new Vector3(1.0f, currentHp / maxHP, 1.0f);
         MovingThingsFactory.DungoFactoryWorking = false;
         for (var i = 0; i < 3; i++)
         {
@@ -173,8 +173,8 @@ public class LevelManager : MonoBehaviour {
     {
         // TODO: Clear Level condition
         gameOn = false;
-        currentHP = maxHP;
-        hungerBar.transform.localScale = new Vector3(1.0f, currentHP / maxHP, 1.0f);
+        currentHp = maxHP;
+        hungerBar.transform.localScale = new Vector3(1.0f, currentHp / maxHP, 1.0f);
         MovingThingsFactory.DungoFactoryWorking = false;
         currentWave++;
         CheckIfFactoryCanProduceClocksAndArrows();
@@ -226,8 +226,8 @@ public class LevelManager : MonoBehaviour {
 
     public void AddHP(float hp)
     {
-        currentHP += hp;
-        if (currentHP > maxHP) currentHP = maxHP;
+        currentHp += hp;
+        if (currentHp > maxHP) currentHp = maxHP;
     }
 
     /// <summary>
